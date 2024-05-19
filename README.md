@@ -8,3 +8,5 @@
 - вивід значень датчиків у вигляді графіку у веб-застосунку.
 
 Переглянути роботу програми можна за [посиланням](https://iot-climate.onrender.com/).
+
+![image](https://github.com/xorobiov/iot-climate/assets/169550430/bd247c79-5eef-4a4c-b906-ecf1a3f27628)
