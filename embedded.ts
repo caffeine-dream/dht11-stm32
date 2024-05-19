@@ -9,7 +9,7 @@ const parser = new ReadlineParser()
 const prisma = new PrismaClient()
 
 const port = new SerialPort({ 
-  path: process.env.PORT!, 
+  path: process.env.SERIAL_PORT!, 
   baudRate: Number(process.env.BAUD_RATE!),
 })
 
