@@ -23,7 +23,7 @@ interface AirMetricInterface {
 
 type NativeAirMetric = Omit<AirMetricInterface, "createdAt">
 
-parser.on('data', async (values) => {
+parser.on("data", async (values: string) => {
   const nativeAirMetric = JSON.parse(values) as NativeAirMetric
   
   await prisma.airMetric.create({
