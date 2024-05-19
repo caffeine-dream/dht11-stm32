@@ -1,9 +1,12 @@
 import express from "express"
 import { PrismaClient } from "@prisma/client"
+import path from "path"
 
 const prisma = new PrismaClient()
 
 const app = express()
+
+app.use(express.static(path.join(__dirname, "public")))
 
 interface FindAirMetricsQuery {
   page?: number
