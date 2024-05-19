@@ -1,0 +1,7 @@
+../Core/Src/lcd1602.c:39:19:LCD_Transmit	32	static
+../Core/Src/lcd1602.c:78:19:LCD_TransmitCommand	24	static
+../Core/Src/lcd1602.c:93:19:LCD_Init	24	static
+../Core/Src/lcd1602.c:118:19:LCD_Clear	8	static
+../Core/Src/lcd1602.c:126:19:LCD_SetCursor	16	static
+../Core/Src/lcd1602.c:134:19:LCD_WriteChar	16	static
+../Core/Src/lcd1602.c:142:19:LCD_Write	24	static
