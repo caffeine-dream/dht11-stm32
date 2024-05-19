@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "@prisma/client": "^5.14.0",
+    "dotenv": "^16.4.5",
+    "serialport": "^12.0.0"
+  },
+  "devDependencies": {
+    "@types/serialport": "^8.0.5",
+    "prisma": "^5.14.0"
+  }
+}

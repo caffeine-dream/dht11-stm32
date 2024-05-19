@@ -1,0 +1,16 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("PG_HOST")
+}
+
+model AirMetric {
+  id          Int      @id @default(autoincrement())
+  temperature Decimal  @db.Decimal(10, 2)
+  humidity    Int
+  createdAt   DateTime @default(now())
+}
+
