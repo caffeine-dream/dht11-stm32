@@ -1,14 +1,14 @@
 
 const fetchAirMetrics = async () => {
-  const since = document.querySelector("#since").value
-  const until = document.querySelector("#until").value
+  const since = new Date(document.querySelector("#since").value)
+  const until = new Date(document.querySelector("#until").value)
 
   const urlParams = `
-    ${isValidDate(new Date(since)) ? `since=${since}&` : ""}
-    ${isValidDate(new Date(until)) ? `until=${until}` : ""}  
+    ${isValidDate(since) ? `since=${since.toISOString()}&` : ""}
+    ${isValidDate(until) ? `until=${until.toISOString()}` : ""}  
   `
 
-  let airMetrics = await fetch(`/air-metrics?${urlParams.trim()}`)
+  let airMetrics = await fetch(`/air-metrics?${urlParams.trim().replaceAll("\n", "")}`)
   
   airMetrics = await airMetrics.json()
 
@@ -24,6 +24,10 @@ const fetchAirMetrics = async () => {
 }
 
 const drawChart = async () => {
+  const chartNode = document.querySelector("#chart")
+
+  chartNode.innerHTML = ""
+
   const airMetrics = await fetchAirMetrics()
 
   const data = google.visualization.arrayToDataTable([
@@ -39,9 +43,7 @@ const drawChart = async () => {
     },
   }
 
-  const chart = new google.visualization.LineChart(
-    document.querySelector("#chart")
-  )
+  const chart = new google.visualization.LineChart(chartNode)
 
   chart.draw(data, options)
 }
@@ -51,7 +53,7 @@ const isValidDate = (date) => {
 }
 
 google.charts.load("current", {
-  "packages": [
+  packages: [
     "corechart",
   ],
 })
