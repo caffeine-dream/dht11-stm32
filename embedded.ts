@@ -26,8 +26,6 @@ type NativeAirMetric = Omit<AirMetricInterface, "createdAt">
 parser.on('data', async (values) => {
   const nativeAirMetric = JSON.parse(values) as NativeAirMetric
   
-  console.log('Writing to pg', nativeAirMetric);
-
   await prisma.airMetric.create({
     data: nativeAirMetric,
   })
