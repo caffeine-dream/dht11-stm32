@@ -33,7 +33,7 @@ npx prisma generate
 npm run start:serial
 ```
 
-5. Запустіть сервер (сторінка із графіком).
+5. Запустіть сервер (сторінка із графіком буде запущена на [localhost](http://localhost:80)).
 
 ```
 npm run start:view
