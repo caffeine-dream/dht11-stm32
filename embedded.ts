@@ -1,15 +1,10 @@
-import env from "dotenv";
+import config from "./config";
 import { PrismaClient } from "@prisma/client";
 import { SerialDataSource } from "./datasource/serial-datasource";
 
-env.config();
-
 const prisma = new PrismaClient();
 
-const serialDataSource = new SerialDataSource(
-  process.env.SERIAL_PORT!,
-  Number(process.env.BAUD_RATE!)
-);
+const serialDataSource = new SerialDataSource(config.portName, config.baudRate);
 
 serialDataSource.listen(async (airMetric) => {
   await prisma.airMetric.create({
