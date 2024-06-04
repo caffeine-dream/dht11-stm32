@@ -1,35 +1,14 @@
 import express from "express";
-import { PrismaClient } from "@prisma/client";
 import path from "path";
+import airMetricRouter from "./air-metric/air-metric.routes";
 
-const prisma = new PrismaClient();
+const bootstrap = () => {
+  const app = express();
 
-const app = express();
+  app.use(express.static(path.join(__dirname, "public")));
+  app.use(airMetricRouter);
 
-app.use(express.static(path.join(__dirname, "public")));
+  app.listen(80);
+};
 
-interface FindAirMetricsQuery {
-  page?: number;
-  perPage?: number;
-  since?: string;
-  until?: string;
-}
-
-app.get("/air-metrics", async (req, res) => {
-  const query = req.query as FindAirMetricsQuery;
-
-  res.json(
-    await prisma.airMetric.findMany({
-      where: {
-        createdAt: {
-          lte: query.until && new Date(query.until),
-          gte: query.since && new Date(query.since),
-        },
-      },
-      take: query.perPage && +query.perPage,
-      skip: !query.page ? 0 : +query.perPage! * +query.page,
-    })
-  );
-});
-
-app.listen(80);
+bootstrap();
